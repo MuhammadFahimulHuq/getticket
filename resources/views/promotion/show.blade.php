@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
 <a href="/promotion">Go Back</a>
@@ -7,11 +7,14 @@
 <p>Description : {{$promotion->description}}</p>
 <p>Ticket Price: {{$promotion->price}}</p>
 <small>created at: {{$promotion->created_at}}</small>    
-
+@if(Route::has('login'))
+@if($user->role == "Admin")
 <a href="/promotion/{{$promotion->id}}/edit">Edit</a>
 <form action="{{route('promotion.destroy',$promotion->id)}}" method="POST">
 @csrf
 @method('DELETE')
 <button type="submit" style="background: red">Delete</button>
 </form>
+@endif
+@endif
 @endSection

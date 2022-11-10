@@ -1,9 +1,9 @@
 <?php
 
-
-
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PromotionController;
+use App\Models\Promotion;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('promotion', PromotionController::class);
+Route::group(['middleware' => 'isAdmin'], function () {
+    Route::resource('promotion', PromotionController::class, ['expect' => 'index', 'show']);
+});
+Route::resource('promotion', PromotionController::class, ['only' => ['index', 'show']]);
+
+// Route::get('/promotion/create')->middleware('auth', 'verified', 'isAdmin');
+// Route::post('/promotion')->middleware('auth', 'verified', 'isAdmin');
+// Route::get('/promotion/{id}/edit')->middleware('auth', 'verified', 'isAdmin');
+// // Route::put('/promotion')
+// Route::resource('promotion', PromotionController::class, ['only' => ['create', 'edit', 'destroy']]);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__ . '/auth.php';

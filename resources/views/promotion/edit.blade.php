@@ -1,8 +1,8 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
 <h1>Create Promotion</h1>
-<form action="{{route('promotion.update',$promotion->id)}}" method="POST">
+<form action="{{route('promotion.update',$promotion->id)}}" method="POST" enctype="multipart/form-data">
  @method('PUT')
     @csrf
 <label for="title">Title</label>
@@ -12,7 +12,7 @@
 <label for="price">Price</label>
 <input type="number" name="price" id="price" value="{{$promotion->price}}">
 <label for="image">Upload Image</label>
-<input type="file" class="form-control" id="image" name="image" value="${}">
+<input type="file" class="form-control" id="image" name="image" value="{{$promotion->image}}">
 <button type="submit">Submit</button>
 </form>
 @endSection

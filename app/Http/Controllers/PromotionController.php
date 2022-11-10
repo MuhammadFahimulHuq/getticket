@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Promotion;
+use Illuminate\Support\Facades\Auth;
 
 class PromotionController extends Controller
 {
@@ -62,7 +63,7 @@ class PromotionController extends Controller
     public function show($id)
     {
         $promotion = Promotion::find($id);
-        return view('promotion.show')->with('promotion', $promotion);
+        return view('promotion.show')->with('promotion', $promotion)->with('user', Auth::user());
     }
 
     /**
@@ -96,13 +97,8 @@ class PromotionController extends Controller
         $promotion->title = $request->input('title');
         $promotion->description = $request->input('description');
         $promotion->price = $request->input('price');
-        if ($image = $request->file('image')) {
-            $imageName = time() . '.' . $image->getClientOrgininalExtension();
-            $image->move(public_path('images'), $imageName);
-            $request->image = $imageName;
-        } else {
-            unset($request->image);
-        }
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
         $promotion->image = $imageName;
         $promotion->save();
         return redirect('/promotion')->with('success', 'Promotion Updated!');
@@ -117,6 +113,9 @@ class PromotionController extends Controller
     public function destroy($id)
     {
         $promotion = Promotion::find($id);
+        if ($promotion->image) {
+            @unlink(public_path('images', $promotion->image));
+        }
         $promotion->delete();
         return redirect('/promotion')->with('success', 'Promotion Removed!');
     }
