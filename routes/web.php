@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AddToCartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Livewire\CardCounter;
 use App\Models\Promotion;
 use Illuminate\Support\Facades\Route;
 
@@ -24,11 +28,13 @@ Route::group(['middleware' => 'isAdmin'], function () {
 });
 Route::resource('promotion', PromotionController::class, ['only' => ['index', 'show']]);
 
-// Route::get('/promotion/create')->middleware('auth', 'verified', 'isAdmin');
-// Route::post('/promotion')->middleware('auth', 'verified', 'isAdmin');
-// Route::get('/promotion/{id}/edit')->middleware('auth', 'verified', 'isAdmin');
-// // Route::put('/promotion')
-// Route::resource('promotion', PromotionController::class, ['only' => ['create', 'edit', 'destroy']]);
+Route::resource('order', OrderController::class)->middleware('auth');
+Route::get('/promotion/addtocart/{id}', [AddToCartController::class, 'store'])->name('cart.store');
+Route::get('/cart', [AddToCartController::class, 'index'])->name('cart.index');
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name(('profile.index'));
+// Route::post('/cart/remove', [AddToCartController::class, 'remove'])->name('cart.remove');
+// Route::post('/cart/update', [AddToCartController::class, 'update'])->name('cart.update');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

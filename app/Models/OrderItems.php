@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderList extends Model
+class OrderItems extends Model
 {
     use HasFactory;
-    public function promotion()
+    public function order()
     {
-        return $this->hasMany(Promotion::class);
+        return $this->belongsTo(Order::class);
     }
+    protected $guarded = [];
 }
