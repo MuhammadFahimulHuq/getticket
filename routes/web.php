@@ -32,6 +32,7 @@ Route::resource('order', OrderController::class)->middleware('auth');
 Route::get('/promotion/addtocart/{id}', [AddToCartController::class, 'store'])->name('cart.store');
 Route::get('/cart', [AddToCartController::class, 'index'])->name('cart.index');
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name(('profile.index'));
+Route::get('/profile/orderdetails/{id}', [ProfileController::class, 'show'])->middleware('auth')->name(('profile.show'));
 // Route::post('/cart/remove', [AddToCartController::class, 'remove'])->name('cart.remove');
 // Route::post('/cart/update', [AddToCartController::class, 'update'])->name('cart.update');
 

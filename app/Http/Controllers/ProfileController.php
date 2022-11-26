@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItems;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -13,7 +15,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile.index');
+        $orders = auth()->user()->orders;
+
+        return view('profile.index')->with('orders', $orders);
     }
 
     /**
@@ -34,7 +38,6 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -45,7 +48,8 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::find($id);
+        return view('orderDetail.show')->with('order', $order);
     }
 
     /**

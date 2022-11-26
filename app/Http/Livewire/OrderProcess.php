@@ -40,16 +40,19 @@ class OrderProcess extends Component
 
         $promotions = Cart::getContent();
         foreach ($promotions as $promotion) {
-            $orderItems_data = ([
+            $orderItems_data[] = ([
                 'title' => $promotion->name,
                 'description' => $promotion->attributes->description,
                 'price' => $promotion->price,
                 'quantity' => $promotion->quantity,
                 'image' => $promotion->attributes->image,
+                'order_id' => $order->id
             ]);
         };
-        $orderItems_data["order_id"] = $order->id;
-        OrderItems::create($orderItems_data);
+        foreach ($orderItems_data as $orderItems) {
+            OrderItems::create($orderItems);
+        }
+
         Cart::clear();
         redirect(route('promotion.index'));
     }
