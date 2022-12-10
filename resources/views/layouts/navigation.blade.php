@@ -57,9 +57,16 @@
             @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
-                        {{ __('Add to cart') }}
+                        {{ __('Add to cart-') }} @livewire('add-to-cart-counter')
                     </x-nav-link>
                 </div>
+                @if(Auth::check() && Auth::user()->role =="Admin")
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('promotion.create')" :active="request()->routeIs('promotion.create')">
+                        {{ __('Create Promotion') }}
+                    </x-nav-link>
+                </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

@@ -15,7 +15,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $orders = auth()->user()->orders;
+        $orders = auth()->user()->orders()->paginate(5);
 
         return view('profile.index')->with('orders', $orders);
     }

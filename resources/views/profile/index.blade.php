@@ -3,6 +3,8 @@
 @section('content')
 @if ($orders->count()>0)
 <p class="text-xl">{{Auth::user()->name}}'s your orderslist</p>
+
+ 
 <div class="overflow-x-auto relative shadow-md">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -49,7 +51,7 @@
         @endforeach
     </table>
 </div>
-
+{{$orders->links()}}
 @else
 <p>Your Order is empty!</p>  
 @endif
