@@ -1,6 +1,6 @@
 # GET-TICKET
 
-### e-commerce platform is a platform that allows users to sell event tickets online. The admin is responsible for adding the tickets to the site, and then the user can add them to their cart and make payment.
+### Platform is a platform that allows users to sell event tickets online. The admin is responsible for adding the tickets to the site, and then the user can add them to their cart and make payment.
 
 ## Tech Stack
 
