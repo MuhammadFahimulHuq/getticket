@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="hidden absolute top-0 right-0 px-6 py-4 sm:block">
                     @auth
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-dropdown align="right" width="48">

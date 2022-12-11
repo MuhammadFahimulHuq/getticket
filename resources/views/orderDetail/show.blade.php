@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="flex gap-5">
+<div class="flex flex-col justify-center items-center gap-5">
 <div class="w-1/2">
-<div class="text-xl">Order ID: #{{$order->id}}</div>
+<div class="text-2xl my-4">Order ID: #{{$order->id}}</div>
 <div class="overflow-x-auto relative">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -33,7 +33,7 @@
                     {{$promotion->title}}
                 </td>
                 <td class="py-4 px-6">
-                    {{$promotion->price}}
+                    <span>&#2547</span>{{$promotion->price}}
                 </td>
                 <td class="py-4 px-6">
                     {{$promotion->quantity}}
@@ -44,10 +44,11 @@
     </table>
 </div>
 </div>
-<div class="w-1/2 bg-white">
+<div class="w-1/2 bg-white text-xl">
+    <p class="font-bold">Information Details</p>
     <p>Contact No: {{$order->getAttribute('contact-no')}}</p>
 <p>Payment Method: {{$order->paymentMethod}}</p>
-<p>Total Amount: {{$order->getAttribute('total-price')}}</p>
+<p>Total Amount: <span>&#2547</span>{{$order->getAttribute('total-price')}}</p>
 <p></p> 
 </div>
 </div>

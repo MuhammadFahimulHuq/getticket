@@ -2,7 +2,7 @@
 
 @section('content')
 @if ($orders->count()>0)
-<p class="text-xl">{{Auth::user()->name}}'s your orderslist</p>
+<p class="text-2xl text-center my-4">{{Auth::user()->name}}'s your orderslist</p>
 
  
 <div class="overflow-x-auto relative shadow-md">
@@ -37,7 +37,7 @@
                     {{$order->created_at}}
                   </td>
                 <td class="py-4 px-6">
-                    {{$order->getAttribute('total-price')}}
+                    <span>&#2547</span>{{$order->getAttribute('total-price')}}
                 </td>
                 <td class="py-4 px-6">
                     {{$order->getAttribute('paymentMethod')}}
