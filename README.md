@@ -1,7 +1,8 @@
 # GET-TICKET
 
 ### Platform is a platform that allows users to sell event tickets online. The admin is responsible for adding the tickets to the site, and then the user can add them to their cart and make payment.
-
+![](https://github.com/MuhammadFahimulHuq/getticket/blob/main/public/readme_assets/gif1.gif)
+![](https://github.com/MuhammadFahimulHuq/getticket/blob/main/public/readme_assets/gif2.gif)
 ## Tech Stack
 
 **Client:** BladePHP, TailwindCSS
